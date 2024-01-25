@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import { RouteLocations } from '@/router/models'
 import { ref } from 'vue'
 import type { Segment } from '@/models/segment'
 import SegmentList from '@/components/SegmentList.vue'
 import DropZone from '@/components/DropZone.vue'
+import { convertDataUrl } from '@/utils/util-file'
+import { useAudioPlayer } from '@/composables/useAudioPlayer'
 
 const segments = ref<Segment[]|undefined>(undefined)
 
-const selectFiles = (files:File[])=>{
+const {changeFile} = useAudioPlayer()
+
+const selectFiles =async (files:File[])=>{
   for(const file of files){
     console.log(file.name)
+
+    if(file.name.endsWith('.json')){
+      segments.value = JSON.parse(await file.text()).segments
+    }
+
+    if(file.name.endsWith('.mov')){
+      const url = await convertDataUrl(file)
+      changeFile(url)
+    }
   }
 }
 </script>
 
 <template>
-  <div>This is HomeView</div>
-  <div>
-    <v-btn :to="RouteLocations.toAbout()">About</v-btn>
-  </div>
   <SegmentList v-if="segments" :segments="segments"/>
   <DropZone @drop="selectFiles"/>
 </template>

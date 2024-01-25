@@ -8,14 +8,15 @@ const emits = defineEmits<{ (e: 'drop',files:File[]): void }>()
 
 function onDrop(files: File[] | null) {
   // called when files are dropped on zone
+  if(files === null){
+    return
+  }
 
   emits('drop',files)
 }
 
 const { isOverDropZone } = useDropZone(dropZoneRef, {
   onDrop,
-  // specify the types of data to be received.
-  dataTypes: ['image/jpeg']
 })
 </script>
 
