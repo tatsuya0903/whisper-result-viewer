@@ -2,6 +2,7 @@ import { onMounted, ref } from 'vue'
 let audio:HTMLAudioElement = new Audio()
 const isPlaying = ref<boolean>(false)
 const time = ref<number>(0)
+
 export const useAudioPlayer = ()=>{
 
 
@@ -9,7 +10,7 @@ export const useAudioPlayer = ()=>{
   })
 
   const changeFile = (src:string)=>{
-    audio = new Audio(src)
+    audio = new Audio()
     audio.addEventListener('play', () => {
       isPlaying.value = true
     })
@@ -19,6 +20,8 @@ export const useAudioPlayer = ()=>{
     audio.addEventListener('timeupdate', () => {
       time.value = audio.currentTime
     })
+    audio.src=src
+    // audio.currentSrc = src
   }
 
   const play = (time:number)=>{

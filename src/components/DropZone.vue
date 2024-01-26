@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useDropZone } from '@vueuse/core'
 import { ref } from 'vue'
+import { useTheme } from 'vuetify'
 
 const dropZoneRef = ref<HTMLDivElement>()
 const emits = defineEmits<{ (e: 'drop',files:File[]): void }>()
@@ -18,10 +19,13 @@ function onDrop(files: File[] | null) {
 const { isOverDropZone } = useDropZone(dropZoneRef, {
   onDrop,
 })
+
+const {current}= useTheme()
+const primaryColor =current.value.colors.primary
 </script>
 
 <template>
-  <div ref="dropZoneRef" class="drop-zone">
+  <div ref="dropZoneRef" class="drop-zone" :class="{'drop-zone--over':isOverDropZone}">
     Drop files here
   </div>
 </template>
@@ -30,6 +34,10 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
 .drop-zone{
   width: 300px;
   height: 200px;
-  border: 3px dashed gray;
+  border: 3px dashed lightgray;
+
+  &.drop-zone--over{
+    border-color: v-bind(primaryColor);
+  }
 }
 </style>

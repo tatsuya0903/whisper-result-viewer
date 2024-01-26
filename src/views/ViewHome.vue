@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import type { Segment } from '@/models/segment'
 import SegmentList from '@/components/SegmentList.vue'
 import DropZone from '@/components/DropZone.vue'
-import { convertDataUrl } from '@/utils/util-file'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
 
 const segments = ref<Segment[]|undefined>(undefined)
@@ -19,7 +18,7 @@ const selectFiles =async (files:File[])=>{
     }
 
     if(file.name.endsWith('.mov')){
-      const url = await convertDataUrl(file)
+      const url = window.URL.createObjectURL(file)
       changeFile(url)
     }
   }
