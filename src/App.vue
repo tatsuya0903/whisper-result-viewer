@@ -1,12 +1,56 @@
 <script setup lang="ts">
+import { useAudioPlayer } from '@/composables/useAudioPlayer'
+import { computed } from 'vue'
+
+const { isPlaying, duration, time, seek, play, pause } = useAudioPlayer()
+
+const currentTime = computed<number>({
+  get: () => time.value,
+  set: (value) => {
+    console.log(value)
+    seek(value)
+  }
+})
+
+const calcTime = (second: number): string => {
+  const m = Math.floor(second / 60)
+  const s = Math.floor(second) % 60
+  return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+}
 </script>
 
 <template>
   <v-app>
-    <v-app-bar title="タイトル" color="primary"/>
+    <v-app-bar title="タイトル" color="primary" />
     <v-main>
       <router-view />
     </v-main>
+    <v-footer app v-if="duration > 0">
+      <v-toolbar>
+        <template #title>
+          <v-slider
+            :min="0"
+            :max="duration"
+            :model-value="currentTime"
+            @end="(value) => (currentTime = value)"
+            step="1"
+            color="primary"
+            hide-details
+          >
+            <template #prepend>
+              {{ calcTime(time) }}
+            </template>
+            <template #append>
+              {{ calcTime(duration) }}
+            </template>
+          </v-slider>
+        </template>
+        <template #prepend>
+          <v-btn icon="mdi-pause" @click="pause" v-if="isPlaying" />
+          <v-btn icon="mdi-play" @click="() => play()" v-else />
+        </template>
+      </v-toolbar>
+    </v-footer>
   </v-app>
 </template>
 

@@ -5,19 +5,19 @@ import SegmentList from '@/components/SegmentList.vue'
 import DropZone from '@/components/DropZone.vue'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
 
-const segments = ref<Segment[]|undefined>(undefined)
+const segments = ref<Segment[] | undefined>(undefined)
 
-const {changeFile} = useAudioPlayer()
+const { changeFile } = useAudioPlayer()
 
-const selectFiles =async (files:File[])=>{
-  for(const file of files){
+const selectFiles = async (files: File[]) => {
+  for (const file of files) {
     console.log(file.name)
 
-    if(file.name.endsWith('.json')){
+    if (file.name.endsWith('.json')) {
       segments.value = JSON.parse(await file.text()).segments
     }
 
-    if(file.name.endsWith('.mov')){
+    if (file.name.endsWith('.mov')) {
       const url = window.URL.createObjectURL(file)
       changeFile(url)
     }
@@ -26,6 +26,6 @@ const selectFiles =async (files:File[])=>{
 </script>
 
 <template>
-  <SegmentList v-if="segments" :segments="segments"/>
-  <DropZone @drop="selectFiles"/>
+  <SegmentList v-if="segments" :segments="segments" />
+  <DropZone @drop="selectFiles" />
 </template>
