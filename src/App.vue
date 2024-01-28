@@ -21,7 +21,7 @@ const calcTime = (second: number): string => {
 
 <template>
   <v-app>
-    <v-app-bar title="タイトル" color="primary" />
+    <v-app-bar title="WhisperResultViewer" color="primary" density="compact" />
     <v-main>
       <router-view />
     </v-main>

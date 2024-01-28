@@ -27,5 +27,9 @@ const selectFiles = async (files: File[]) => {
 
 <template>
   <SegmentList v-if="segments" :segments="segments" />
-  <DropZone @drop="selectFiles" />
+  <template v-else>
+    <div style="padding-top: 32px; display: flex; justify-content: center">
+      <DropZone @drop="selectFiles" />
+    </div>
+  </template>
 </template>
