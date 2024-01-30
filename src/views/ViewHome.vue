@@ -17,7 +17,7 @@ const selectFiles = async (files: File[]) => {
       segments.value = JSON.parse(await file.text()).segments
     }
 
-    if (file.name.endsWith('.mov')) {
+    if (['.mov', '.mp3'].some((ext) => file.name.endsWith(ext))) {
       const url = window.URL.createObjectURL(file)
       changeFile(url)
     }
