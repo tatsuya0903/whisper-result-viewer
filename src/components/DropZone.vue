@@ -22,7 +22,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
 const { current } = useTheme()
 const primaryColor = current.value.colors.primary
 
-const { onChange } = useFileDialog({
+const { onChange, open } = useFileDialog({
   directory: false
 })
 
@@ -40,7 +40,7 @@ onChange((fileList) => {
     <div class="drop-zone__row drop-zone__row--first">ここに変換結果と音声ファイルをドラッグ</div>
     <div class="drop-zone__row drop-zone__row--second">または</div>
     <div class="drop-zone__row drop-zone__row--third">
-      <v-btn color="primary">アップロードするファイルを選択</v-btn>
+      <v-btn color="primary" @click="open">アップロードするファイルを選択</v-btn>
     </div>
   </div>
 </template>
