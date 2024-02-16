@@ -6,6 +6,7 @@ import DropZone from '@/components/DropZone.vue'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
 import HowToUse from '@/components/HowToUse.vue'
 
+const data = ref<Data | undefined>(undefined)
 const segments = ref<Segment[] | undefined>(undefined)
 
 const { changeFile } = useAudioPlayer()
@@ -17,8 +18,9 @@ const selectFiles = async (files: File[]) => {
     if (file.name.endsWith('.json')) {
       segments.value = []
       await nextTick()
-      const data: Data = JSON.parse(await file.text())
-      segments.value = data.segments
+      const obj: Data = JSON.parse(await file.text())
+      data.value = obj
+      segments.value = obj.segments
     }
 
     if (['.mov', '.mp3'].some((ext) => file.name.endsWith(ext))) {
