@@ -4,6 +4,7 @@ import screenshot3a from '@/assets/images/screenshot3a.png'
 import screenshot3b from '@/assets/images/screenshot3b.png'
 import screenshot4a from '@/assets/images/screenshot4a.png'
 import screenshot4b from '@/assets/images/screenshot4b.png'
+import screenshot4c from '@/assets/images/screenshot4c.png'
 import screenshot5a from '@/assets/images/screenshot5a.png'
 import screenshot5b from '@/assets/images/screenshot5b.png'
 import screenshot6 from '@/assets/images/screenshot6.png'
@@ -38,8 +39,11 @@ const colabUrl =
     <h3>4. １つ目の再生ボタンをクリックする</h3>
     <v-img :src="screenshot4a" />
     <br />
-    <div>最後に「Successfully」と表示されたいればOK</div>
+    ※警告が表示される場合あり。プログラムの内容に問題がない場合は「このまま実行」をクリックする
     <v-img :src="screenshot4b" />
+    <br />
+    <div>最後に「Successfully」と表示されたいればOK</div>
+    <v-img :src="screenshot4c" />
     <br />
 
     <h3>5. ２つ目の再生ボタンをクリックする</h3>
