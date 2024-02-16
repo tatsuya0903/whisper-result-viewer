@@ -11,7 +11,7 @@ const router = createRouter({
       component: ViewHome
     },
     {
-      path: '/about',
+      path: '/how-to-use',
       name: RouteNames.About,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
