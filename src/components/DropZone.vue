@@ -27,12 +27,11 @@ const { onChange, open } = useFileDialog({
 })
 
 onChange((fileList) => {
-  if(fileList ===null){
+  if (fileList === null) {
     return
   }
   emits('drop', Array.from(fileList))
 })
-
 </script>
 
 <template>
@@ -48,7 +47,6 @@ onChange((fileList) => {
 <style lang="scss" scoped>
 .drop-zone {
   width: 100%;
-  max-width: 720px;
   height: 390px;
   border: 3px dashed lightgray;
   display: flex;

@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     DropZone: typeof import('./src/components/DropZone.vue')['default']
+    HowToUse: typeof import('./src/components/HowToUse.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SegmentList: typeof import('./src/components/SegmentList.vue')['default']
