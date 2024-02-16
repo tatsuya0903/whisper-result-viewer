@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import type { Data, Segment } from '@/models/segment'
 import SegmentList from '@/components/SegmentList.vue'
 import DropZone from '@/components/DropZone.vue'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
 import HowToUse from '@/components/HowToUse.vue'
 
-const data = ref<Data | undefined>(undefined)
-const segments = computed<Segment[] | undefined>(() => data.value?.segments)
+const segments = ref<Segment[] | undefined>(undefined)
 
 const { changeFile } = useAudioPlayer()
 
@@ -16,7 +15,10 @@ const selectFiles = async (files: File[]) => {
     console.log(file.name)
 
     if (file.name.endsWith('.json')) {
-      data.value = JSON.parse(await file.text())
+      segments.value = []
+      await nextTick()
+      const data: Data = JSON.parse(await file.text())
+      segments.value = data.segments
     }
 
     if (['.mov', '.mp3'].some((ext) => file.name.endsWith(ext))) {
