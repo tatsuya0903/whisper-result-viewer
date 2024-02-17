@@ -18,7 +18,7 @@ const colabUrl =
     <h2>使い方</h2>
     <br />
 
-    <h3>1. 文字起こしツールをGoogle Colaboratoryを開く</h3>
+    <h3>1. 文字起こしツールをGoogle Colaboratoryで開く</h3>
     <a :href="colabUrl" target="_blank">
       <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" />
     </a>
@@ -32,14 +32,15 @@ const colabUrl =
     <h3>3. 音声ファイル(mp3,movなど)をドラッグ＆ドロップする</h3>
     <v-img :src="screenshot3a" />
     <br />
-    <div>アップロード中の表示 ※結構時間かかる(100MBのファイルで5分〜10分くらい)</div>
+    <div>アップロード中の表示</div>
+    <div>※結構時間かかる(100MBのファイルで5分〜10分くらい)</div>
     <v-img :src="screenshot3b" />
     <br />
 
     <h3>4. １つ目の再生ボタンをクリックする</h3>
     <v-img :src="screenshot4a" />
     <br />
-    ※警告が表示される場合あり。プログラムの内容に問題がない場合は「このまま実行」をクリックする
+    ※警告が表示される場合あり。<br />プログラムの内容に問題がない場合は「このまま実行」をクリックする
     <v-img :src="screenshot4b" />
     <br />
     <div>最後に「Successfully」と表示されたいればOK</div>
@@ -49,8 +50,10 @@ const colabUrl =
     <h3>5. ２つ目の再生ボタンをクリックする</h3>
     <v-img :src="screenshot5a" />
     <br />
-    <div>実行が終わるまで、ブラウザを表示したままで待機する</div>
-    <div>実行中の画面例 ※結構時間かかる(60分の音声ファイルで20分くらい)</div>
+    <div>
+      実行が終わるまで、ブラウザを表示したままで待機する<br />※結構時間かかる(60分の音声ファイルで20分くらい)
+    </div>
+    <div>実行中の画面例</div>
     <v-img :src="screenshot5b" />
     <br />
 
