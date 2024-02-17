@@ -22,8 +22,11 @@ const calcTime = (second: number): string => {
 <template>
   <v-app>
     <v-app-bar title="文字起こし結果表示ツール" color="primary" density="compact">
+      <template #prepend>
+        <v-icon icon="mdi-message-text" />
+      </template>
       <template #append>
-        <div id="actions"/>
+        <div id="actions" />
       </template>
     </v-app-bar>
     <v-main>
