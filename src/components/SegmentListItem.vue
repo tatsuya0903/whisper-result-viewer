@@ -25,8 +25,7 @@ const emits = defineEmits<{ (e: 'click'): void }>()
       {{ segment.text }}
     </v-list-item-media>
     <template #append>
-      <v-icon icon="mdi-pause" v-if="isPlaying" />
-      <v-icon icon="mdi-play" v-else />
+      <v-icon icon="mdi-volume-high" :style="{ opacity: isPlaying ? 1 : 0 }" />
     </template>
   </v-list-item>
 </template>
