@@ -5,6 +5,7 @@ import SegmentList from '@/components/SegmentList.vue'
 import DropZone from '@/components/DropZone.vue'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
 import HowToUse from '@/components/HowToUse.vue'
+import { useConfig } from '@/composables/useConfig'
 
 const data = ref<Data | undefined>(undefined)
 const segments = ref<Segment[] | undefined>(undefined)
@@ -54,12 +55,17 @@ const downloadTsv = (data: Data) => {
   link.click() // クリックイベントを発生させる
   URL.revokeObjectURL(link.href) // オブジェクト URL を解放」
 }
+
+const { isAutoScroll } = useConfig()
 </script>
 
 <template>
   <teleport to="#actions" v-if="data">
-    <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTxt(data)">テキスト</v-btn>
-    <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTsv(data)">TSV</v-btn>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+      <v-checkbox v-model="isAutoScroll" label="自動スクロール" hide-details />
+      <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTxt(data)">テキスト</v-btn>
+      <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTsv(data)">TSV</v-btn>
+    </div>
   </teleport>
 
   <SegmentList v-if="segments" :segments="segments" />

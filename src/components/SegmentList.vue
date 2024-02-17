@@ -3,6 +3,9 @@ import { computed, watch } from 'vue'
 import type { Segment } from '@/models/segment'
 import SegmentListItem from '@/components/SegmentListItem.vue'
 import { useAudioPlayer } from '@/composables/useAudioPlayer'
+import { useConfig } from '@/composables/useConfig'
+
+const { isAutoScroll } = useConfig()
 
 const props = defineProps<{
   segments: Segment[]
@@ -21,12 +24,19 @@ const clickPlay = (segment: Segment) => {
 watch(
   () => selectedSegment.value?.id,
   (value) => {
-    if (value) {
-      const element = document.getElementById(`${value}`)
-      if (element) {
-        // @ts-ignore
-        element.scrollIntoViewIfNeeded({ behavior: 'smooth' })
-      }
+    if (!isAutoScroll.value) {
+      // 自動スクロール無効の場合
+      return
+    }
+
+    if (value === undefined) {
+      return
+    }
+
+    const element = document.getElementById(`${value}`)
+    if (element) {
+      // @ts-ignore
+      element.scrollIntoViewIfNeeded({ behavior: 'smooth' })
     }
   }
 )
