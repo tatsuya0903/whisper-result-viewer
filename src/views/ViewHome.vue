@@ -62,9 +62,13 @@ const { isAutoScroll } = useConfig()
 <template>
   <teleport to="#actions" v-if="data">
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
-      <v-checkbox v-model="isAutoScroll" label="自動スクロール" hide-details />
-      <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTxt(data)">テキスト</v-btn>
-      <v-btn prepend-icon="mdi-download" variant="text" @click="downloadTsv(data)">TSV</v-btn>
+      <v-checkbox v-model="isAutoScroll" label="自動スクロール" hide-details density="compact" />
+      <v-btn prepend-icon="mdi-download" variant="text" density="compact" @click="downloadTxt(data)"
+        >テキスト</v-btn
+      >
+      <v-btn prepend-icon="mdi-download" variant="text" density="compact" @click="downloadTsv(data)"
+        >TSV</v-btn
+      >
     </div>
   </teleport>
 
