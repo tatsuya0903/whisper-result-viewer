@@ -60,8 +60,6 @@ const rewind = (second: number): void => {
           <v-btn icon="mdi-pause" @click="pause" v-if="isPlaying" color="primary" />
           <v-btn icon="mdi-play" @click="() => play()" v-else color="primary" />
           <v-btn icon="mdi-rewind-5" @click="rewind(5)" color="primary" />
-          <v-btn icon="mdi-rewind-10" @click="rewind(10)" color="primary" />
-          <v-btn icon="mdi-rewind-15" @click="rewind(15)" color="primary" />
         </template>
       </v-toolbar>
     </v-footer>
