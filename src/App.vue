@@ -17,6 +17,10 @@ const calcTime = (second: number): string => {
   const s = Math.floor(second) % 60
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
 }
+
+const rewind = (second: number): void => {
+  seek(Math.max(0, time.value - second))
+}
 </script>
 
 <template>
@@ -53,8 +57,11 @@ const calcTime = (second: number): string => {
           </v-slider>
         </template>
         <template #prepend>
-          <v-btn icon="mdi-pause" @click="pause" v-if="isPlaying" />
-          <v-btn icon="mdi-play" @click="() => play()" v-else />
+          <v-btn icon="mdi-pause" @click="pause" v-if="isPlaying" color="primary" />
+          <v-btn icon="mdi-play" @click="() => play()" v-else color="primary" />
+          <v-btn icon="mdi-rewind-5" @click="rewind(5)" color="primary" />
+          <v-btn icon="mdi-rewind-10" @click="rewind(10)" color="primary" />
+          <v-btn icon="mdi-rewind-15" @click="rewind(15)" color="primary" />
         </template>
       </v-toolbar>
     </v-footer>
